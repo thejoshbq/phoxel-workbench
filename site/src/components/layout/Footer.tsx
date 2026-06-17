@@ -12,7 +12,7 @@ export default function Footer() {
         </p>
         <div className="flex items-center gap-4">
           <a
-            href="https://github.com/thejoshbq/REACHER-Suite"
+            href="https://github.com/thejoshbq/phoxel-workbench"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 label-caps text-[0.6rem] transition-colors duration-150"

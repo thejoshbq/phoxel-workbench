@@ -1,5 +1,5 @@
 {
-  "name": "reacher-suite-site",
+  "name": "phoxel-workbench-site",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,7 +12,7 @@
     "sync-demo": "bash scripts/build-demo.sh",
     "build:full": "npm run sync-demo && npm run build"
   },
-  "homepage": "https://otis-lab-musc.github.io/REACHER-Suite/",
+  "homepage": "https://thejoshbq.github.io/phoxel-workbench/",
   "dependencies": {
     "lucide-react": "^0.577.0",
     "react": "^19.2.4",

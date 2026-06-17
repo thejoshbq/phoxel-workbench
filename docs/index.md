@@ -3,16 +3,16 @@ layout: default
 title: Home
 ---
 
-# REACHER Suite
+# Phoxel Workbench
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue)](https://github.com/Otis-Lab-MUSC/REACHER-Suite)
-[![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/Otis-Lab-MUSC/REACHER-Suite/blob/main/LICENSE)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue)](https://github.com/thejoshbq/phoxel-workbench)
+[![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/thejoshbq/phoxel-workbench/blob/main/LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%E2%80%933.13-blue)](https://www.python.org)
 [![Platform](https://img.shields.io/badge/platform-Arduino%20UNO%20%7C%20Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)]()
 
 **Open-source hardware, firmware, and software for head-fixed mouse operant conditioning with two-photon calcium imaging**
 
-The REACHER Suite is a collection of 7 free and open-source tools that together form an end-to-end platform for running behavioral experiments on head-fixed mice while simultaneously capturing neural activity via two-photon imaging. It covers everything from 3D-printable hardware and Arduino firmware, through real-time experiment control, to post-hoc calcium imaging analysis and visualization.
+Phoxel Workbench is a collection of 7 free and open-source tools that together form an end-to-end platform for running behavioral experiments on head-fixed mice while simultaneously capturing neural activity via two-photon imaging. It covers everything from 3D-printable hardware and Arduino firmware, through real-time experiment control, to post-hoc calcium imaging analysis and visualization.
 
 *Written by*: Joshua Boquiren
 

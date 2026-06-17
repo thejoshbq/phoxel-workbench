@@ -171,7 +171,7 @@ export default function LabrynthPage() {
           Run head-fixed mouse experiments from your browser.
         </p>
         <a
-          href="https://github.com/thejoshbq/REACHER-Suite"
+          href="https://github.com/thejoshbq/phoxel-workbench"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"
