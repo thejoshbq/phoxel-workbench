@@ -29,7 +29,7 @@ export default function LandingPage() {
 
         {/* Banner */}
         <img
-          src={`${BASE}reacher-icon-banner.png`}
+          src={`${BASE}phoxel-wordmark.svg`}
           alt="Phoxel Workbench"
           className="w-full max-w-2xl mb-10 opacity-90"
           style={{ filter: 'drop-shadow(0 0 20px rgba(0,229,255,0.2))' }}
