@@ -32,6 +32,17 @@ jobs:
         run: npm ci
         working-directory: site
 
+      # Pull the latest published, relative-base Labrynth demo and embed it into
+      # public/labrynth-demo/ so the site stays in sync with Labrynth deploys.
+      # Needs a PAT with actions:read on Otis-Lab-MUSC/labrynth — the default
+      # GITHUB_TOKEN cannot read another org's artifacts. Fails the build loudly
+      # if the artifact can't be pulled (no stale demo ships unnoticed).
+      - name: Sync Labrynth demo (pull latest artifact)
+        run: npm run sync-demo
+        working-directory: site
+        env:
+          GH_TOKEN: ${{ secrets.LABRYNTH_DEMO_TOKEN }}
+
       - name: Build
         run: npm run build
         working-directory: site
