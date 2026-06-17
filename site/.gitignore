@@ -11,6 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
+
+# Labrynth demo is pulled from CI at build time (see scripts/build-demo.sh),
+# not vendored. Refresh locally with `npm run sync-demo`.
+public/labrynth-demo/
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
