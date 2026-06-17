@@ -17,24 +17,28 @@ function detectPlatform(): Platform | null {
   return null
 }
 
+// Always-current releases page. Swap to releases/latest/download/<asset> once
+// the per-OS installer filenames are pinned.
+const RELEASES_URL = 'https://github.com/Otis-Lab-MUSC/labrynth/releases/latest'
+
 const PLATFORMS: Record<Platform, { label: string; sublabel: string; icon: ReactNode; url: string }> = {
   windows: {
     label: 'Windows',
     sublabel: 'Windows 10 / 11 · x64',
     icon: <Monitor size={16} />,
-    url: '#', // TODO: replace with GitHub release asset URL
+    url: RELEASES_URL,
   },
   macos: {
     label: 'macOS',
     sublabel: 'macOS 12+ · Universal',
     icon: <Laptop size={16} />,
-    url: '#', // TODO: replace with GitHub release asset URL
+    url: RELEASES_URL,
   },
   linux: {
     label: 'Linux',
     sublabel: 'AppImage · x64',
     icon: <Terminal size={16} />,
-    url: '#', // TODO: replace with GitHub release asset URL
+    url: RELEASES_URL,
   },
 }
 const BASE = import.meta.env.BASE_URL
@@ -108,6 +112,8 @@ function DownloadSection() {
             </div>
             <a
               href={PLATFORMS[detected].url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 label-caps text-[0.65rem] font-semibold transition-opacity duration-150 hover:opacity-80"
               style={{ backgroundColor: ACCENT, color: 'var(--color-bg)', borderRadius: 2 }}
             >
@@ -125,6 +131,8 @@ function DownloadSection() {
             <a
               key={key}
               href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="panel-border flex items-center gap-2 px-4 py-3 label-caps text-[0.65rem] transition-colors duration-150"
               style={{
                 backgroundColor: 'var(--color-panel)',
@@ -171,7 +179,7 @@ export default function LabrynthPage() {
           Run head-fixed mouse experiments from your browser.
         </p>
         <a
-          href="https://github.com/thejoshbq/phoxel-workbench"
+          href="https://github.com/Otis-Lab-MUSC/labrynth"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"

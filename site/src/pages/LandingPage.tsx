@@ -1,31 +1,13 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Github } from 'lucide-react'
 import GlitchText from '../components/shared/GlitchText'
+import NeuralCanvas from '../components/shared/NeuralCanvas'
+import ToolCard from '../components/shared/ToolCard'
+import { tools } from '../data/tools'
 
 const BASE = import.meta.env.BASE_URL
-
-// TODO: replace with live publication data
-const publications = [
-  {
-    title: 'REACHER: An Open-Source Platform for Automated Operant Conditioning in Head-Fixed Mice',
-    authors: 'Baquero J., et al.',
-    venue: 'Journal of Neuroscience Methods',
-    year: '2025',
-    abstract:
-      'We present REACHER, a hardware-software stack for running head-fixed operant and classical conditioning experiments. The system combines Arduino-based firmware with a Python kernel and browser-based interface, enabling real-time behavioral control and data logging without custom scripting.',
-    doi: 'https://doi.org/10.1000/placeholder-doi-1',
-  },
-  {
-    title: 'Labrynth: A Browser-Native Interface for Real-Time Behavioral Neuroscience',
-    authors: 'Baquero J., Otis J.M.',
-    venue: 'bioRxiv',
-    year: '2024',
-    abstract:
-      'Labrynth provides a full-stack behavioral control interface built on FastAPI and React 19. It abstracts serial communication with REACHER hardware behind a WebSocket-driven event system, enabling live monitoring of lick detection, reward delivery, cue presentation, and trial outcomes.',
-    doi: 'https://doi.org/10.1000/placeholder-doi-2',
-  },
-]
+const GITHUB_URL = 'https://github.com/thejoshbq/phoxel-workbench'
 
 export default function LandingPage() {
   const navigate = useNavigate()
@@ -41,7 +23,10 @@ export default function LandingPage() {
       onAnimationEnd={corrupted ? handleCorruptEnd : undefined}
     >
       {/* Hero */}
-      <section className="w-full max-w-6xl pt-16 sm:pt-24 pb-12 flex flex-col items-center text-center">
+      <section className="relative w-full max-w-6xl pt-16 sm:pt-24 pb-12 flex flex-col items-center text-center">
+        {/* Interactive canvas backdrop */}
+        <NeuralCanvas className="absolute inset-0 -z-10" />
+
         {/* Banner */}
         <img
           src={`${BASE}reacher-icon-banner.png`}
@@ -62,99 +47,91 @@ export default function LandingPage() {
           <br />
           <span style={{ color: 'var(--color-accent-labrynth)' }}>not the terminal.</span>
         </GlitchText>
-        <p className="text-sm sm:text-base max-w-xl leading-relaxed" style={{ color: 'var(--color-text-dim)' }}>
+        <p className="text-sm sm:text-base max-w-xl leading-relaxed mb-8" style={{ color: 'var(--color-text-dim)' }}>
           Open-source tools for running and analyzing neuroscience experiments —
           from live behavioral control to interactive data exploration.
         </p>
-      </section>
 
-      {/* System cards */}
-      <section className="w-full max-w-2xl pb-24 grid sm:grid-cols-1 gap-5">
-        {/* Labrynth card */}
-        <div
-          className="panel-border p-7 flex flex-col gap-4 transition-all duration-200 group cursor-pointer"
-          style={{ backgroundColor: 'var(--color-panel)' }}
-          onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--color-accent-labrynth)')}
-          onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--color-border)')}
-          onClick={() => navigate('/labrynth')}
-          role="link"
-          aria-label="Explore Labrynth"
-          tabIndex={0}
-          onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate('/labrynth') }}
-        >
-          <div className="flex items-center gap-2">
-            <span
-              className="status-pulse inline-block w-2 h-2 rounded-full"
-              style={{ backgroundColor: 'var(--color-accent-labrynth)', color: 'var(--color-accent-labrynth)' }}
-            />
-            <span className="label-caps text-[0.65rem]" style={{ color: 'var(--color-accent-labrynth)' }}>
-              Behavioral control
-            </span>
-          </div>
-          <h2
-            className="text-2xl font-bold tracking-[0.05em] glow-accent glitch-text"
-            style={{ color: 'var(--color-accent-labrynth)' }}
+        {/* CTAs */}
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <Link
+            to="/tools"
+            className="inline-flex items-center gap-2 px-5 py-2.5 panel-border label-caps text-[0.65rem] transition-colors duration-150"
+            style={{ color: 'var(--color-accent-labrynth)', borderColor: 'var(--color-accent-labrynth)' }}
           >
-            Labrynth
-          </h2>
-          <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text)' }}>
-            Browser-based interface for running head-fixed mouse experiments —
-            operant and classical conditioning without writing a single script.
-          </p>
+            Explore the Workbench <ArrowRight size={12} />
+          </Link>
           <Link
             to="/labrynth"
-            className="mt-auto flex items-center gap-2 label-caps text-[0.65rem] transition-colors duration-150 group-hover:gap-3"
-            style={{ color: 'var(--color-accent-labrynth)' }}
-            onClick={e => e.stopPropagation()}
+            className="inline-flex items-center gap-2 px-5 py-2.5 panel-border label-caps text-[0.65rem] transition-colors duration-150"
+            style={{ color: 'var(--color-text-dim)', borderColor: 'var(--color-border)' }}
+            onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--color-accent-labrynth)')}
+            onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--color-border)')}
           >
-            Explore Labrynth <ArrowRight size={12} />
+            Try Labrynth live
           </Link>
         </div>
       </section>
 
-      {/* Research & Publications */}
+      {/* Ecosystem grid */}
+      <section className="w-full max-w-6xl pb-20">
+        <div className="flex items-center justify-between mb-6">
+          <p className="label-caps" style={{ color: 'var(--color-text-dim)' }}>
+            The Workbench
+          </p>
+          <Link
+            to="/tools"
+            className="flex items-center gap-2 label-caps text-[0.6rem] transition-all duration-150 hover:gap-3"
+            style={{ color: 'var(--color-accent-labrynth)' }}
+          >
+            All tools <ArrowRight size={12} />
+          </Link>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {tools.map(tool => (
+            <ToolCard key={tool.id} tool={tool} />
+          ))}
+        </div>
+      </section>
+
+      {/* Research & Citation */}
       <section className="w-full max-w-2xl pb-24 flex flex-col gap-5">
         <p className="label-caps" style={{ color: 'var(--color-text-dim)' }}>
-          Research &amp; Publications
+          Research &amp; Citation
         </p>
-        {publications.map(pub => (
-          <div
-            key={pub.doi}
-            className="panel-border p-6 flex flex-col gap-2"
-            style={{ backgroundColor: 'var(--color-panel)' }}
+        <div
+          className="panel-border p-6 flex flex-col gap-3"
+          style={{ backgroundColor: 'var(--color-panel)' }}
+        >
+          <p className="text-sm font-semibold leading-snug" style={{ color: 'var(--color-accent-labrynth)' }}>
+            Using the Phoxel Workbench in your research?
+          </p>
+          <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text)' }}>
+            A platform preprint is in preparation. In the meantime, please cite the relevant tool's
+            repository — each includes a <code style={{ color: 'var(--color-accent-labrynth)' }}>CITATION.cff</code> with
+            recommended citation metadata. Published experiments built on the Workbench will be
+            featured here.
+          </p>
+          <button
+            type="button"
+            onClick={() => navigate('/contact')}
+            className="self-start label-caps text-[0.6rem] mt-1 transition-colors duration-150"
+            style={{ color: 'var(--color-accent-labrynth)' }}
           >
-            <p className="text-sm font-semibold leading-snug" style={{ color: 'var(--color-accent-labrynth)' }}>
-              {pub.title}
-            </p>
-            <p className="text-xs" style={{ color: 'var(--color-text-dim)' }}>
-              {pub.authors}
-            </p>
-            <p className="label-caps text-[0.6rem]" style={{ color: 'var(--color-text-dim)' }}>
-              {pub.venue} — {pub.year}
-            </p>
-            <p
-              className="text-xs leading-relaxed"
-              style={{
-                color: 'var(--color-text)',
-                display: '-webkit-box',
-                WebkitLineClamp: 3,
-                WebkitBoxOrient: 'vertical',
-                overflow: 'hidden',
-              }}
-            >
-              {pub.abstract}
-            </p>
-            <a
-              href={pub.doi}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="label-caps text-[0.6rem] mt-1 transition-colors duration-150"
-              style={{ color: 'var(--color-accent-labrynth)' }}
-            >
-              Read Article →
-            </a>
-          </div>
-        ))}
+            Tell us about your work →
+          </button>
+        </div>
+        <a
+          href={GITHUB_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 label-caps text-[0.6rem] transition-colors duration-150"
+          style={{ color: 'var(--color-text-dim)' }}
+          onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-accent-labrynth)')}
+          onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-text-dim)')}
+        >
+          <Github size={12} /> View the source on GitHub
+        </a>
       </section>
     </div>
   )

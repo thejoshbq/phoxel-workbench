@@ -135,7 +135,7 @@ export default function PynapsePage() {
           From raw fluorescence to peri-event tensors in three lines.
         </p>
         <a
-          href="https://github.com/thejoshbq/phoxel-workbench"
+          href="https://github.com/thejoshbq/pynapse"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"
@@ -235,7 +235,7 @@ export default function PynapsePage() {
           Links
         </p>
         <a
-          href="https://github.com/thejoshbq/phoxel-workbench"
+          href="https://github.com/thejoshbq/pynapse"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"
