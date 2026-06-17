@@ -102,9 +102,15 @@ export default function Navbar() {
         {/* Logo */}
         <NavLink
           to="/"
-          className="label-caps tracking-widest text-[0.65rem] hover:text-accent transition-colors duration-150"
+          className="inline-flex items-center gap-2 label-caps tracking-widest text-[0.65rem] hover:text-accent transition-colors duration-150"
           style={{ color: 'var(--color-text-dim)' }}
         >
+          <img
+            src={`${import.meta.env.BASE_URL}phoxel-icon.svg`}
+            alt=""
+            aria-hidden="true"
+            className="h-6 w-6 shrink-0"
+          />
           <GlitchText>
             <span style={{ color: 'var(--color-accent-labrynth)' }}>PHOXEL</span>
             {' '}Workbench
