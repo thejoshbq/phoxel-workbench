@@ -8,7 +8,7 @@ export default function Footer() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
         <p className="label-caps text-[0.6rem]" style={{ color: 'var(--color-text-dim)' }}>
-          © 2025 Otis Lab — Open-source neuroscience tools
+          © 2026 Otis Lab · Phoxel Workbench — Open-source neuroscience tools
         </p>
         <div className="flex items-center gap-4">
           <a

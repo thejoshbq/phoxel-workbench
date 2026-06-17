@@ -110,7 +110,7 @@ export default function FirmwarePage() {
           Real-time operant conditioning on Arduino UNO.
         </p>
         <a
-          href="https://github.com/thejoshbq/phoxel-workbench"
+          href="https://github.com/Otis-Lab-MUSC/reacher/tree/main/firmware"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"
@@ -202,7 +202,7 @@ export default function FirmwarePage() {
           Links
         </p>
         <a
-          href="https://github.com/thejoshbq/phoxel-workbench"
+          href="https://github.com/Otis-Lab-MUSC/reacher/tree/main/firmware"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"

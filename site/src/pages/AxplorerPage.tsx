@@ -1,8 +1,25 @@
-import { Github, AlignCenter, BarChart2, Download, Brain } from 'lucide-react'
+import { Github, AlignCenter, BarChart2, Download } from 'lucide-react'
 import FeatureCard from '../components/shared/FeatureCard'
 import GlitchText from '../components/shared/GlitchText'
 
 const ACCENT = 'var(--color-accent-axplorer)'
+// Hex literal for SVG presentation attributes (CSS vars don't resolve there).
+const VIZ = '#00D4D8'
+
+const steps = [
+  {
+    title: 'Load a session',
+    body: 'Import .tif imaging stacks alongside Labrynth behavioral logs — timestamps line up automatically.',
+  },
+  {
+    title: 'Align to an event',
+    body: 'Pick a cue, lick, or reward and Axplorer re-centers every cell’s trace on that moment.',
+  },
+  {
+    title: 'Explore & export',
+    body: 'Read population PETHs, response metrics, and per-cell rasters, then export figures and data.',
+  },
+]
 
 const features = [
   {
@@ -55,16 +72,22 @@ export default function AxplorerPage() {
         >
           Axplorer
         </GlitchText>
-        <p className="text-base sm:text-lg max-w-xl leading-relaxed mb-8" style={{ color: 'var(--color-text)' }}>
+        <p className="text-base sm:text-lg max-w-xl leading-relaxed mb-5" style={{ color: 'var(--color-text)' }}>
           Explore two-photon imaging data interactively.
         </p>
+        <div className="flex items-center gap-2 mb-8">
+          <span className="inline-block w-2 h-2 rounded-full" style={{ backgroundColor: VIZ, boxShadow: `0 0 6px ${VIZ}` }} />
+          <span className="label-caps text-[0.6rem]" style={{ color: 'var(--color-text-dim)' }}>
+            Beta — in active development
+          </span>
+        </div>
         <a
-          href="https://github.com/thejoshbq/phoxel-workbench"
+          href="https://github.com/thejoshbq/axplorer"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"
           style={{ color: ACCENT, borderColor: 'var(--color-border)' }}
-          onMouseEnter={e => (e.currentTarget.style.borderColor = ACCENT)}
+          onMouseEnter={e => (e.currentTarget.style.borderColor = VIZ)}
           onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--color-border)')}
         >
           <Github size={12} /> View on GitHub
@@ -102,39 +125,73 @@ export default function AxplorerPage() {
         </div>
       </section>
 
-      {/* Demo scaffold */}
+      {/* How it works */}
       <section className="w-full max-w-6xl mx-auto">
+        <style>{`
+          @media (prefers-reduced-motion: reduce) {
+            .peth-sweep { display: none; }
+          }
+        `}</style>
         <p className="label-caps mb-4" style={{ color: 'var(--color-text-dim)' }}>
-          Interactive Demo
+          How it works
         </p>
-        <div
-          className="panel-border p-12 flex flex-col items-center justify-center gap-5 text-center"
-          style={{ backgroundColor: 'var(--color-panel)', minHeight: '320px' }}
-        >
-          <Brain size={36} style={{ color: ACCENT, opacity: 0.5 }} />
-          <div>
-            <h3
-              className="text-lg font-semibold tracking-[0.05em] mb-2"
-              style={{ color: 'var(--color-text)' }}
-            >
-              Coming Soon
-            </h3>
-            <p className="text-sm max-w-sm leading-relaxed" style={{ color: 'var(--color-text-dim)' }}>
-              We're building an interactive demo. Check back soon or star the repo to follow along.
-            </p>
-          </div>
-          <a
-            href="https://github.com/thejoshbq/phoxel-workbench"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"
-            style={{ color: ACCENT, borderColor: 'var(--color-border)' }}
-            onMouseEnter={e => (e.currentTarget.style.borderColor = ACCENT)}
-            onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--color-border)')}
-          >
-            <Github size={12} /> View on GitHub
-          </a>
+
+        {/* Steps */}
+        <div className="grid sm:grid-cols-3 gap-4 mb-6">
+          {steps.map((s, i) => (
+            <div key={s.title} className="panel-border p-5 flex flex-col gap-2" style={{ backgroundColor: 'var(--color-panel)' }}>
+              <span className="label-caps text-[0.6rem]" style={{ color: VIZ }}>
+                Step {i + 1}
+              </span>
+              <h3 className="text-sm font-semibold tracking-[0.04em]" style={{ color: 'var(--color-text)' }}>
+                {s.title}
+              </h3>
+              <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-dim)' }}>
+                {s.body}
+              </p>
+            </div>
+          ))}
         </div>
+
+        {/* Animated PETH explainer */}
+        <div className="panel-border p-6 sm:p-8" style={{ backgroundColor: 'var(--color-panel)' }} aria-hidden="true">
+          <svg viewBox="0 0 600 170" xmlns="http://www.w3.org/2000/svg" className="w-full">
+            {/* axes */}
+            <line x1="60" y1="140" x2="560" y2="140" stroke={VIZ} strokeOpacity={0.3} strokeWidth={1} />
+            <line x1="60" y1="20" x2="60" y2="140" stroke={VIZ} strokeOpacity={0.3} strokeWidth={1} />
+            {/* event marker */}
+            <line x1="300" y1="20" x2="300" y2="140" stroke={VIZ} strokeOpacity={0.5} strokeWidth={1} strokeDasharray="3 4" />
+            <text x="300" y="158" textAnchor="middle" fill={VIZ} fontSize={9} fontFamily="monospace">event (t=0)</text>
+            {/* response traces */}
+            <path d="M60,118 L300,118 C330,70 360,58 392,86 C430,118 500,114 560,116" fill="none" stroke={VIZ} strokeOpacity={0.9} strokeWidth={1.5} />
+            <path d="M60,124 L300,124 C332,96 366,92 396,108 C440,126 500,122 560,124" fill="none" stroke={VIZ} strokeOpacity={0.55} strokeWidth={1.5} />
+            <path d="M60,112 L300,112 C326,52 362,40 394,78 C432,116 500,110 560,113" fill="none" stroke={VIZ} strokeOpacity={0.3} strokeWidth={1.5} />
+            {/* sweeping playhead */}
+            <line className="peth-sweep" y1="20" y2="140" stroke={VIZ} strokeOpacity={0.7} strokeWidth={1}>
+              <animate attributeName="x1" values="60;560;60" keyTimes="0;0.5;1" dur="5s" repeatCount="indefinite" />
+              <animate attributeName="x2" values="60;560;60" keyTimes="0;0.5;1" dur="5s" repeatCount="indefinite" />
+            </line>
+          </svg>
+          <p className="text-[0.65rem] text-center mt-2" style={{ color: 'var(--color-text-dim)' }}>
+            Peri-event time histogram — population responses aligned to a behavioral event.
+          </p>
+        </div>
+
+        <p className="text-xs leading-relaxed mt-4" style={{ color: 'var(--color-text-dim)' }}>
+          Axplorer is in <span style={{ color: VIZ }}>beta</span> — the dashboard ships with the package today;
+          a hosted interactive demo is on the roadmap.
+        </p>
+        <a
+          href="https://github.com/thejoshbq/axplorer"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2 mt-4 panel-border label-caps text-[0.65rem] transition-colors duration-150"
+          style={{ color: ACCENT, borderColor: 'var(--color-border)' }}
+          onMouseEnter={e => (e.currentTarget.style.borderColor = VIZ)}
+          onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--color-border)')}
+        >
+          <Github size={12} /> View on GitHub
+        </a>
       </section>
     </div>
   )

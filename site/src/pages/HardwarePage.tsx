@@ -88,9 +88,8 @@ export default function HardwarePage() {
         <p className="text-base sm:text-lg max-w-xl leading-relaxed mb-8" style={{ color: 'var(--color-text)' }}>
           Print, assemble, and run. No machinist required.
         </p>
-        {/* TODO: add GitHub repo URL */}
         <a
-          href="https://github.com/thejoshbq/phoxel-workbench"
+          href="https://github.com/Otis-Lab-MUSC/reacher-hardware-models"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"
@@ -220,9 +219,8 @@ export default function HardwarePage() {
         <p className="label-caps mb-4" style={{ color: 'var(--color-text-dim)' }}>
           Links
         </p>
-        {/* TODO: add GitHub repo URL */}
         <a
-          href="https://github.com/thejoshbq/phoxel-workbench"
+          href="https://github.com/Otis-Lab-MUSC/reacher-hardware-models"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"

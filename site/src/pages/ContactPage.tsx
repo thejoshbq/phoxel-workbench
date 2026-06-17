@@ -4,6 +4,10 @@ import GlitchText from '../components/shared/GlitchText'
 
 const ACCENT = 'var(--color-accent-labrynth)'
 
+// Set VITE_CONTACT_ENDPOINT to a Formspree (or compatible) form URL to enable
+// real delivery. Unset → optimistic local success (useful in dev / previews).
+const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined
+
 const SUBJECT_OPTIONS = [
   'General Inquiry',
   'Bug Report',
@@ -40,6 +44,8 @@ export default function ContactPage() {
   const [form, setForm] = useState<FormState>({ name: '', email: '', subject: '', message: '' })
   const [errors, setErrors] = useState<FormErrors>({})
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
     const { name, value } = e.target
@@ -49,15 +55,35 @@ export default function ContactPage() {
     }
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    setSubmitError(null)
     const errs = validate(form)
     if (Object.keys(errs).length > 0) {
       setErrors(errs)
       return
     }
-    // TODO: wire to email backend (e.g. Formspree, EmailJS, or custom API endpoint)
-    setSubmitted(true)
+
+    // No backend configured: optimistic local success (dev / preview).
+    if (!CONTACT_ENDPOINT) {
+      setSubmitted(true)
+      return
+    }
+
+    try {
+      setSubmitting(true)
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error(`Request failed: ${res.status}`)
+      setSubmitted(true)
+    } catch {
+      setSubmitError('Something went wrong sending your message. Please try again or email us directly.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const labelStyle = { color: 'var(--color-text-dim)' }
@@ -219,14 +245,23 @@ export default function ContactPage() {
               </div>
             )}
 
+            {submitError && (
+              <div role="alert" aria-live="assertive">
+                <p className="text-xs" style={{ color: '#FF4444' }}>
+                  {submitError}
+                </p>
+              </div>
+            )}
+
             <button
               type="submit"
-              className="mt-2 px-5 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150 self-start"
+              disabled={submitting}
+              className="mt-2 px-5 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150 self-start disabled:opacity-50 disabled:cursor-not-allowed"
               style={{ color: ACCENT, borderColor: 'var(--color-border)' }}
               onMouseEnter={e => (e.currentTarget.style.borderColor = ACCENT)}
               onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--color-border)')}
             >
-              Send Message
+              {submitting ? 'Sending…' : 'Send Message'}
             </button>
           </form>
         )}

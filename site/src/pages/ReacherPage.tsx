@@ -100,7 +100,7 @@ export default function ReacherPage() {
           The experiment server. Control, stream, and log from a single process.
         </p>
         <a
-          href="https://github.com/thejoshbq/phoxel-workbench"
+          href="https://github.com/Otis-Lab-MUSC/reacher"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"
@@ -212,8 +212,8 @@ export default function ReacherPage() {
           <CodeBlock
             lang="bash"
             lines={[
-              'pip install reacher',
-              'git clone https://github.com/thejoshbq/phoxel-workbench && pip install -e ".[dev]"',
+              'pip install reacher2p',
+              'git clone https://github.com/Otis-Lab-MUSC/reacher && pip install -e ".[dev]"',
               'reacher',
             ]}
           />
@@ -226,7 +226,7 @@ export default function ReacherPage() {
           Links
         </p>
         <a
-          href="https://github.com/thejoshbq/phoxel-workbench"
+          href="https://github.com/Otis-Lab-MUSC/reacher"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"

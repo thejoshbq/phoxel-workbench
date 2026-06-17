@@ -61,11 +61,11 @@ const questions = [
   },
   {
     q: 'Who is it for?',
-    a: 'Documentation coming soon.',
+    a: 'Labs running two-photon calcium imaging that need ROI masks tuned to their own preparation. When the generic Cellpose model under- or over-segments your cells, Roigbiv lets you fine-tune on a handful of annotated examples and reuse that model across sessions — no deep-learning expertise required.',
   },
   {
     q: 'How does it integrate with the rest of the suite?',
-    a: 'Documentation coming soon.',
+    a: 'Roigbiv exports segmentation masks in the format Pynapse expects, so detected ROIs flow straight into alignment and peri-event tensor extraction, and on into Axplorer for visualization. It sits at the head of the analysis layer, turning raw imaging stacks into the cell masks the rest of the pipeline consumes.',
   },
 ]
 
@@ -108,7 +108,7 @@ export default function RoigbivPage() {
           Train a custom cell segmentation model on your own data.
         </p>
         <a
-          href="https://github.com/thejoshbq/phoxel-workbench"
+          href="https://github.com/thejoshbq/roigbiv"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"
@@ -141,10 +141,10 @@ export default function RoigbivPage() {
           Overview
         </p>
         <div className="flex flex-col gap-6">
-          {questions.map(({ q, a }, idx) => (
+          {questions.map(({ q, a }) => (
             <div
               key={q}
-              className={`panel-border p-6 ${idx > 0 ? 'opacity-40' : ''}`}
+              className="panel-border p-6"
               style={{ backgroundColor: 'var(--color-panel)' }}
             >
               <h3 className="text-sm font-semibold mb-2 tracking-[0.04em] glitch-text" style={{ color: ACCENT }}>
@@ -226,7 +226,7 @@ export default function RoigbivPage() {
           Links
         </p>
         <a
-          href="https://github.com/thejoshbq/phoxel-workbench"
+          href="https://github.com/thejoshbq/roigbiv"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"
