@@ -45,13 +45,13 @@ export default function LandingPage() {
         {/* Banner */}
         <img
           src={`${BASE}reacher-icon-banner.png`}
-          alt="Reacher Suite"
+          alt="Phoxel Workbench"
           className="w-full max-w-2xl mb-10 opacity-90"
           style={{ filter: 'drop-shadow(0 0 20px rgba(0,229,255,0.2))' }}
         />
 
         <p className="label-caps mb-3" style={{ color: 'var(--color-accent-labrynth)' }}>
-          Otis Lab — Reacher Suite
+          Otis Lab — Phoxel Workbench
         </p>
         <GlitchText
           as="h1"

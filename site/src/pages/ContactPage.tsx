@@ -79,7 +79,7 @@ export default function ContactPage() {
           Contact
         </GlitchText>
         <p className="text-base max-w-xl leading-relaxed" style={{ color: 'var(--color-text)' }}>
-          Questions about REACHER Suite, collaboration proposals, or bug reports — reach out below.
+          Questions about Phoxel Workbench, collaboration proposals, or bug reports — reach out below.
         </p>
       </section>
 
@@ -234,7 +234,7 @@ export default function ContactPage() {
         {/* Sidebar / links */}
         <div className="mt-8 flex flex-col gap-3">
           <a
-            href="https://github.com/Otis-Lab-MUSC/REACHER-Suite"
+            href="https://github.com/thejoshbq/phoxel-workbench"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 label-caps text-[0.65rem] transition-colors duration-150"
@@ -242,7 +242,7 @@ export default function ContactPage() {
             onMouseEnter={e => (e.currentTarget.style.color = ACCENT)}
             onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-text-dim)')}
           >
-            <Github size={12} /> GitHub — Otis-Lab-MUSC/REACHER-Suite
+            <Github size={12} /> GitHub — thejoshbq/phoxel-workbench
           </a>
           <p className="label-caps text-[0.6rem]" style={{ color: 'var(--color-text-dim)' }}>
             {/* TODO: add institutional address */}

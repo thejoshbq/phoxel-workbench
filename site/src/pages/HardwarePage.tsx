@@ -90,7 +90,7 @@ export default function HardwarePage() {
         </p>
         {/* TODO: add GitHub repo URL */}
         <a
-          href="https://github.com/Otis-Lab-MUSC/REACHER-Suite"
+          href="https://github.com/thejoshbq/phoxel-workbench"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"
@@ -222,7 +222,7 @@ export default function HardwarePage() {
         </p>
         {/* TODO: add GitHub repo URL */}
         <a
-          href="https://github.com/Otis-Lab-MUSC/REACHER-Suite"
+          href="https://github.com/thejoshbq/phoxel-workbench"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-4 py-2 panel-border label-caps text-[0.65rem] transition-colors duration-150"
