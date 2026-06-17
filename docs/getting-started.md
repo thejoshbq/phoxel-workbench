@@ -45,7 +45,7 @@ npm run build
 
 ## License
 
-All REACHER Suite repositories are released under the [MIT License](https://github.com/Otis-Lab-MUSC/REACHER-Suite/blob/main/LICENSE). See individual repository LICENSE files for details.
+All Phoxel Workbench repositories are released under the [MIT License](https://github.com/thejoshbq/phoxel-workbench/blob/main/LICENSE). See individual repository LICENSE files for details.
 
 ---
 

@@ -5,7 +5,7 @@ title: Experimental Workflow
 
 # Experimental Workflow
 
-The REACHER Suite supports an 8-step pipeline from hardware assembly through neural data analysis.
+Phoxel Workbench supports an 8-step pipeline from hardware assembly through neural data analysis.
 
 ---
 

@@ -4,28 +4,28 @@
 
 @font-face {
   font-family: 'JetBrains Mono';
-  src: url('/REACHER-Suite/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+  src: url('/phoxel-workbench/fonts/JetBrainsMono-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'JetBrains Mono';
-  src: url('/REACHER-Suite/fonts/JetBrainsMono-Medium.woff2') format('woff2');
+  src: url('/phoxel-workbench/fonts/JetBrainsMono-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'JetBrains Mono';
-  src: url('/REACHER-Suite/fonts/JetBrainsMono-SemiBold.woff2') format('woff2');
+  src: url('/phoxel-workbench/fonts/JetBrainsMono-SemiBold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'JetBrains Mono';
-  src: url('/REACHER-Suite/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+  src: url('/phoxel-workbench/fonts/JetBrainsMono-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
