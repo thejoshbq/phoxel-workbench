@@ -17,28 +17,29 @@ function detectPlatform(): Platform | null {
   return null
 }
 
-// Always-current releases page. Swap to releases/latest/download/<asset> once
-// the per-OS installer filenames are pinned.
-const RELEASES_URL = 'https://github.com/Otis-Lab-MUSC/labrynth/releases/latest'
+// Direct one-click installers. These stable names always resolve to the latest
+// release — labrynth's build-installers.yml publishes them alongside the
+// versioned assets (see phoxel-workbench#14).
+const RELEASES_BASE = 'https://github.com/Otis-Lab-MUSC/labrynth/releases/latest/download'
 
 const PLATFORMS: Record<Platform, { label: string; sublabel: string; icon: ReactNode; url: string }> = {
   windows: {
     label: 'Windows',
     sublabel: 'Windows 10 / 11 · x64',
     icon: <Monitor size={16} />,
-    url: RELEASES_URL,
+    url: `${RELEASES_BASE}/labrynth-windows-x64.exe`,
   },
   macos: {
     label: 'macOS',
-    sublabel: 'macOS 12+ · Universal',
+    sublabel: 'macOS 12+ · Apple Silicon',
     icon: <Laptop size={16} />,
-    url: RELEASES_URL,
+    url: `${RELEASES_BASE}/labrynth-macos-arm64.dmg`,
   },
   linux: {
     label: 'Linux',
     sublabel: 'AppImage · x64',
     icon: <Terminal size={16} />,
-    url: RELEASES_URL,
+    url: `${RELEASES_BASE}/labrynth-linux-x64.AppImage`,
   },
 }
 const BASE = import.meta.env.BASE_URL
