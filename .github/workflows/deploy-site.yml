@@ -46,6 +46,10 @@ jobs:
       - name: Build
         run: npm run build
         working-directory: site
+        env:
+          # Inlined into the public bundle (not a secret) → use a repo variable.
+          # Unset is tolerated: the contact form falls back to local success.
+          VITE_CONTACT_ENDPOINT: ${{ vars.VITE_CONTACT_ENDPOINT }}
 
       - uses: actions/upload-pages-artifact@v5
         with:

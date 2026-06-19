@@ -75,10 +75,21 @@ export default function ContactPage() {
       const res = await fetch(CONTACT_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(form),
+        // `_subject` sets the notification email's subject line on Formspree;
+        // `email` is picked up automatically as the reply-to address.
+        body: JSON.stringify({ ...form, _subject: `[Phoxel Workbench Contact] ${form.subject}` }),
       })
-      if (!res.ok) throw new Error(`Request failed: ${res.status}`)
-      setSubmitted(true)
+      if (res.ok) {
+        setSubmitted(true)
+      } else {
+        const data = await res.json().catch(() => null)
+        const detail: string | undefined = data?.errors?.[0]?.message ?? data?.error
+        setSubmitError(
+          detail
+            ? `Couldn't send your message: ${detail}`
+            : 'Something went wrong sending your message. Please try again or email us directly.',
+        )
+      }
     } catch {
       setSubmitError('Something went wrong sending your message. Please try again or email us directly.')
     } finally {
@@ -279,10 +290,11 @@ export default function ContactPage() {
           >
             <Github size={12} /> GitHub — thejoshbq/phoxel-workbench
           </a>
-          <p className="label-caps text-[0.6rem]" style={{ color: 'var(--color-text-dim)' }}>
-            {/* TODO: add institutional address */}
-            Otis Lab — Neuroscience Department
-          </p>
+          <address className="label-caps text-[0.6rem] not-italic leading-relaxed" style={{ color: 'var(--color-text-dim)' }}>
+            Otis Lab, Dept. of Neuroscience, MUSC
+            <br />
+            173 Ashley Ave, Charleston, SC 29425
+          </address>
         </div>
       </section>
     </div>
