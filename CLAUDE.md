@@ -8,8 +8,7 @@ This is the **REACHER Suite landing site / platform-overview repository** — *n
 
 This repo contains:
 
-- `site/` — Vite + React 19 + TypeScript SPA, deployed to GitHub Pages at `https://otis-lab-musc.github.io/REACHER-Suite/`. This is the canonical, current landing site.
-- `docs/` — Older Jekyll/kramdown documentation set (per-package `.md` pages with a custom `_layout`/`_includes`). Still in the tree but the GH Pages workflow only deploys `site/`.
+- `site/` — Vite + React 19 + TypeScript SPA, deployed to GitHub Pages at `https://otis-lab-musc.github.io/REACHER-Suite/`. This is the canonical, current landing site **and the only documentation surface**.
 - `README.md` — Platform-level overview (mermaid architecture diagram, repo table, prerequisites). The site's `LandingPage.tsx` mirrors much of this content; keep them in sync when making suite-wide changes.
 
 ## Commands (site/)
@@ -31,7 +30,7 @@ GitHub Actions (`.github/workflows/deploy-site.yml`) auto-deploys to GitHub Page
 ## Architecture notes
 
 - **Routing**: `HashRouter` (not BrowserRouter) — required because the site is hosted on GitHub Pages under a sub-path (`/REACHER-Suite/`). `vite.config.ts` sets `base: '/REACHER-Suite/'` accordingly. Don't switch to BrowserRouter without also fixing the GH Pages 404 fallback.
-- **Pages**: `src/pages/` contains one component per suite member (Landing, Labrynth, Reacher, Pynapse, Axplorer, Firmware, Hardware, Roigbiv, Contact). Only `LandingPage`, `LabrynthPage`, and `ContactPage` are wired into routes in `App.tsx` — the others exist but are not currently linked. Adding a route means editing `App.tsx` and (typically) `Navbar.tsx`.
+- **Pages**: `src/pages/` contains one component per suite member plus a `/tools` hub — Landing, Tools, Labrynth, Reacher, Firmware, Hardware, Pynapse, Axplorer, Roigbiv, Contact. All are wired into routes in `App.tsx`. The `/tools` page also carries the cross-cutting experimental workflow and getting-started/prerequisites content (ported from the retired `docs/` Jekyll site). Adding a route means editing `App.tsx` and (typically) `Navbar.tsx`.
 - **Layout shell**: `App.tsx` → `CyberpunkGridBackground` (decorative canvas/CSS), `Navbar`, `<Routes>` keyed on `location.pathname` so the `page-enter` animation re-fires on navigation, then `Footer`.
 - **Styling**: Tailwind 3 + `index.css` design tokens. The keyed `page-enter` class in `App.tsx` drives route-change transitions; preserve it if you refactor the shell.
 
@@ -42,10 +41,6 @@ GitHub Actions (`.github/workflows/deploy-site.yml`) auto-deploys to GitHub Page
 Implications:
 - The script assumes the sibling `labrynth/` checkout exists at `../../labrynth/`. CI does not run it; demo refreshes are committed manually via `npm run sync-demo` followed by a commit of `public/labrynth-demo/`.
 - Don't edit files under `public/labrynth-demo/` by hand — they are regenerated.
-
-## docs/ (Jekyll)
-
-`docs/` is a separate Jekyll site (`_config.yml` sets `baseurl: /REACHER-Suite`) with per-package pages. It is **not** built by the GH Pages workflow in this repo. Treat it as legacy/reference material unless explicitly asked to update it; prefer changes in `site/` for anything user-facing.
 
 ## Conventions
 
